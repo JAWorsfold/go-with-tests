@@ -1,6 +1,9 @@
 package arrays
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 // go test --cover is very useful being inbuilt
 func TestSum(t *testing.T) {
@@ -27,4 +30,19 @@ func TestSum(t *testing.T) {
 		}
 	})
 
+}
+
+func TestSumAll(t *testing.T) {
+
+	got := SumAll([]int{1, 2}, []int{0, 9})
+	want := []int{3, 9}
+	// want := "bob" // compiles
+
+	// DeepEqual is not type safe, see above
+	// if !reflect.DeepEqual(got, want) { 
+
+	// can use this as of v1.21
+	if !slices.Equal(got, want) {
+		t.Errorf("got %v want %v", got, want)
+	}
 }
